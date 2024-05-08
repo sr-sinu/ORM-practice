@@ -75,14 +75,14 @@ WSGI_APPLICATION = 'orm_query.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'orm',
-        # 'USER': 'root',
-        # 'PASSWORD': 'groot',
-        # 'HOST': 'localhost',
-        # 'PORT': 3306,
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'orm',
+        'USER': 'root',
+        'PASSWORD': 'groot',
+        'HOST': 'localhost',
+        'PORT': 3306,
     }
 }
 
