@@ -1,6 +1,5 @@
 from django.http import HttpResponse
 
-# Create your views here.
-def CreateData():
+def CreateData(request):
     '''Running data creation process'''
     return HttpResponse("Sucessfully created....!")

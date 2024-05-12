@@ -20,5 +20,5 @@ from myapp.views import CreateData
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('create/', CreateData, name = 'create'),
+    path(' ', CreateData, name = 'create'),
 ]
