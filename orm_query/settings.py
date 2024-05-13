@@ -10,9 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+from dotenv import load_dotenv
 import boto3
 from storages.backends.s3boto3 import S3Boto3Storage
 from pathlib import Path
+
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -131,9 +135,9 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #S3 configurations
-AWS_ACCESS_KEY_ID = 'AKIA6GBMESNBHSVUMIOG'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'myormbucket'
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_BUCKET_REGION = 'ap-south-1'
 
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
