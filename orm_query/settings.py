@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import os
+import boto3
+from storages.backends.s3boto3 import S3Boto3Storage
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -70,8 +74,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'orm_query.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+#Database
+#https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -121,9 +125,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#S3 configurations
+AWS_ACCESS_KEY_ID = 'AKIA6GBMESNBHSVUMIOG'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'myormbucket'
+AWS_S3_BUCKET_REGION = 'ap-south-1'
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAUT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+# STATIC_URL = 'static/'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media'
