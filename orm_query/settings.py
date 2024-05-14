@@ -81,19 +81,30 @@ WSGI_APPLICATION = 'orm_query.wsgi.application'
 #Database
 #https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         # 'ENGINE': 'django.db.backends.sqlite3',
+#         # 'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'orm',
+#         'USER': 'root',
+#         'PASSWORD': 'groot',
+#         'HOST': 'localhost',
+#         'PORT': 3306,
+#     }
+# }
+
+#RDS CONFIGURATIONS
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'orm',
-        'USER': 'root',
-        'PASSWORD': 'groot',
-        'HOST': 'localhost',
+        'NAME': os.getenv('NAME'),
+        'USER': os.getenv('USER'),
+        'PASSWORD': os.getenv('PASSWORD'),
+        'HOST': os.getenv('HOST'),
         'PORT': 3306,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -135,17 +146,17 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #S3 configurations
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_BUCKET_REGION = 'ap-south-1'
+# AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+# AWS_S3_BUCKET_REGION = 'ap-south-1'
 
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAUT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAUT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
-# STATIC_URL = 'static/'
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media'
+STATIC_URL = 'static/'
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static'
+# MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media'
